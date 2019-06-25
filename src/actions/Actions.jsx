@@ -1,21 +1,30 @@
+import { uuid } from "uuid";
+
 export const ADD_TODO = 'ADD_TODO';
 export const DELETE_TODO = 'DELETE_TODO';
-export const AMEND_TODO = 'AMEND_TODO';
+export const TOGGLE_DONE = 'MARK_DONE';
 
-export function addTodo(newTodo) {
+export function addTodo(todo) {
     return {
         type: ADD_TODO,
-        payload: newTodo
+        payload: {
+            todo,
+            id: uuid(),
+            completed: false
+        }
     }
 }
-
-// export function deleteTodo() {
-//     return { type: DELETE_TODO }
-// }
-
-// export function amendTodo(amendedTodo) {
-//     return {
-//         type: AMEND_TODO,
-//         payload: amendedTodo
-//     }
-// }
+export function deleteTodo(id) {
+    console.log(id)
+    return {
+        type: DELETE_TODO,
+        payload: id
+     }
+}
+export function markComplete(id) {
+    console.log(id)
+    return {
+        type: TOGGLE_DONE,
+        payload: id
+    }
+}
